@@ -13,7 +13,7 @@ class App extends Component {
       },
       {
         id: 2,
-        title: 'Lego 3+ for Evelynna',
+        title: 'Lego 3 for Evelynna',
         completed: false
       },
       {
@@ -34,10 +34,16 @@ class App extends Component {
     }) });
   }
 
+  // Delete Todo
+  delTodo = (id) => {
+    this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)] });
+  }
+
+
   render() {
     return (
       <div className="App">
-        <Todos todos={this.state.todos} markComplete={this.markComplete}/>
+        <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/>
       </div>
     );
   }
