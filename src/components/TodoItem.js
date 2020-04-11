@@ -5,9 +5,6 @@ export class TodoItem extends Component {
   // dinamic styling
   getStyle = () => {
     return {
-      background: '#f4f4f4',
-      padding: '10px',
-      borderBottom: '1px #ccc dotted',
       textDecoration: this.props.todo.completed ? 'line-through' : 'none'
     }
   }
@@ -15,13 +12,13 @@ export class TodoItem extends Component {
   render() {
     const { id, title } = this.props.todo; // destructuring
     return (
-      <div style={this.getStyle()}>
-        <p>
-          <input type="checkbox" onChange={this.props.markComplete.bind(this, id)} />
-          {' '} 
+      <div style={this.getStyle()} className="todo-item">
+        {/* <input type="checkbox" onChange={this.props.markComplete.bind(this, id)} />
+        {' '}  */}
+        <div className="delete-btn" onClick={this.props.markComplete.bind(this, id)}>
+          <span onClick={this.props.delTodo.bind(this, id)}><i className="fas fa-trash"></i></span>
           { title }
-          <button onClick={this.props.delTodo.bind(this, id)} style={btnStyle}>x</button>
-        </p>
+        </div>
       </div>
     )
   }
@@ -32,16 +29,6 @@ TodoItem.propTypes = {
   todo: PropTypes.object.isRequired,
   markComplete: PropTypes.func.isRequired,
   delTodo: PropTypes.func.isRequired
-}
-
-const btnStyle = {
-  background: '#ff0000',
-  color: '#fff',
-  border: 'none',
-  padding: '5px 9px',
-  borderRadius: '50%',
-  cursor: 'pointer',
-  float: 'right'
 }
 
 export default TodoItem
